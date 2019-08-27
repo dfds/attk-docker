@@ -17,7 +17,7 @@ RUN apt-get update \
 FROM base
 
 RUN apt-get update \
-    && apt-get install -y curl jq \
+    && apt-get install -y curl unzip jq \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -64,18 +64,6 @@ RUN apt-get update \
     && apt-get install -y kafkacat \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-
-
-# ========================================
-# SAML2AWS
-# ========================================
-
-ENV SAML2AWS_VERSION=2.16.0
-
-RUN curl -L "https://github.com/Versent/saml2aws/releases/download/v${SAML2AWS_VERSION}/saml2aws_${SAML2AWS_VERSION}_linux_amd64.tar.gz" -o saml2aws.tar.gz \
-    && tar -zxvf saml2aws.tar.gz \
-    && rm saml2aws.tar.gz \
-    && mv saml2aws /usr/local/bin/
 
 
 # ========================================
